@@ -9,12 +9,10 @@ import {
   Text,
   Toggle,
   useBinding,
-  useUIColor,
   useColorScheme,
 } from 'swiftui-react-native';
 
 export const ControlSection = () => {
-  const UIColor = useUIColor();
   const { colorScheme, setColorScheme } = useColorScheme();
   const sliderValue = useBinding(0);
   const stepperValue = useBinding(0);
@@ -29,13 +27,13 @@ export const ControlSection = () => {
         <HStack>
           <Text font="body">Slider</Text>
           <Spacer />
-          <Text font="body" foregroundColor={UIColor.systemBlue}>
+          <Text font="body" foregroundColor="systemBlue">
             {sliderValue.value}
           </Text>
         </HStack>
         <VStack padding={10}>
           <Slider
-            accentColor={UIColor.systemBlue}
+            accentColor="systemBlue"
             value={sliderValue}
             step={2}
             updateOnSlide={true}
@@ -46,7 +44,7 @@ export const ControlSection = () => {
         <HStack>
           <Text font="body">Stepper</Text>
           <Spacer />
-          <Text font="body" foregroundColor={UIColor.systemBlue}>
+          <Text font="body" foregroundColor="systemBlue">
             {stepperValue.value}
           </Text>
         </HStack>
@@ -54,7 +52,7 @@ export const ControlSection = () => {
           <Stepper
             value={stepperValue}
             range={[0, 10]}
-            backgroundColor={UIColor.systemGray5}
+            backgroundColor="systemGray5"
             onChange={console.log}
           />
         </VStack>
@@ -63,7 +61,7 @@ export const ControlSection = () => {
         <HStack>
           <Text font="body">Toggle</Text>
           <Spacer />
-          <Text foregroundColor={UIColor.systemBlue} font="body">
+          <Text foregroundColor="systemBlue" font="body">
             {toggleValue.value ? 'On' : 'Off'}
           </Text>
         </HStack>

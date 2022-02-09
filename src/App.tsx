@@ -2,17 +2,16 @@ import React from 'react';
 import { View, ScrollView, StatusBar, StyleSheet } from 'react-native';
 import {
   Text,
-  useUIColor,
   useColorScheme,
+  useUIColor,
   ColorSchemeProvider,
-  Font,
-  Alignment,
 } from 'swiftui-react-native';
 import { ButtonSection } from './sections/ButtonSection';
 import { ColorSection } from './sections/ColorSection';
 import { ControlSection } from './sections/ControlSection';
 import { FontSection } from './sections/FontSection';
 import { ImageSection } from './sections/ImageSection';
+import { ShapeSection } from './sections/ShapesSection';
 import { StackSection } from './sections/StackSection';
 import { TextFieldSection } from './sections/TextFieldSection';
 
@@ -31,21 +30,20 @@ export default function App() {
 }
 
 const Examples = () => {
-  // Get the current color scheme
   const { colorScheme } = useColorScheme();
-  // Get the current UIColor palette
   const UIColor = useUIColor();
+
   return (
-    <View style={[styles.container, { backgroundColor: UIColor.systemGray6 }]}>
+    <View
+      style={[
+        styles.container,
+        { backgroundColor: UIColor.secondarySystemBackground },
+      ]}>
       <StatusBar
         barStyle={colorScheme === 'dark' ? 'light-content' : 'dark-content'}
       />
       <ScrollView>
-        <Text
-          padding={20}
-          alignment={Alignment.leading}
-          font={Font.title}
-          fontWeight="bold">
+        <Text padding={20} alignment="leading" font="title" fontWeight="bold">
           SwiftUI React Native
         </Text>
         <FontSection />
@@ -53,6 +51,7 @@ const Examples = () => {
         <ControlSection />
         <ImageSection />
         <TextFieldSection />
+        <ShapeSection />
         <StackSection />
         <ColorSection />
       </ScrollView>

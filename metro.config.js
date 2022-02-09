@@ -10,10 +10,10 @@
 
 const path = require('path');
 const extraNodeModules = {
-  common: path.resolve(__dirname + '/../swiftui-react-native/dist'),
+  common: path.resolve(path.join(__dirname, '/../swiftui-react-native/dist')),
 };
 const watchFolders = [
-  path.resolve(__dirname + '/../swiftui-react-native/dist'),
+  path.resolve(path.join(__dirname, '/../swiftui-react-native/dist')),
 ];
 
 module.exports = {
