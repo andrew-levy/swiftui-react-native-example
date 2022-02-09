@@ -14,8 +14,7 @@
     "react-native": "0.66.0",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-reanimated": "^2.3.0-beta.2",
-    "react-native-sfsymbols": "1.1.0",
-    "swiftui-react-native": "file:../swiftui-react-native/dist"
+    "react-native-sfsymbols": "1.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
