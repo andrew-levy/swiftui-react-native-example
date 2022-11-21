@@ -1,6 +1,5 @@
 import React from 'react';
-import { List, Text, Font } from 'swiftui-react-native';
-import { toWords } from '../utils';
+import { List, Text } from 'swiftui-react-native';
 
 /**
  * A list of SwiftUI Fonts
@@ -8,11 +7,39 @@ import { toWords } from '../utils';
 export const FontSection = () => {
   return (
     <List inset header="Fonts + Text">
-      {Object.keys(Font).map((font, i) => (
-        <Text key={i} alignment="leading" font={font as keyof typeof Font}>
-          {toWords(font)}
-        </Text>
-      ))}
+      <Text alignment="leading" font="body">
+        Body
+      </Text>
+      <Text alignment="leading" font="callout">
+        Callout
+      </Text>
+      <Text alignment="leading" font="caption">
+        Caption
+      </Text>
+      <Text alignment="leading" font="caption2">
+        Caption 2
+      </Text>
+      <Text alignment="leading" font="footnote">
+        Footnote
+      </Text>
+      <Text alignment="leading" font="headline">
+        Headline
+      </Text>
+      <Text alignment="leading" font="largeTitle">
+        Large Title
+      </Text>
+      <Text alignment="leading" font="subheadline">
+        Subheadline
+      </Text>
+      <Text alignment="leading" font="title">
+        Title
+      </Text>
+      <Text alignment="leading" font="title2">
+        Title 2
+      </Text>
+      <Text alignment="leading" font="title3">
+        Title 3
+      </Text>
     </List>
   );
 };

@@ -1,12 +1,10 @@
 import React from 'react';
 import { View, ScrollView, StatusBar, StyleSheet } from 'react-native';
 import {
+  EnvironmentProvider,
   Text,
+  useEnvironment,
   useUIColor,
-  useColorScheme,
-  ColorSchemeProvider,
-  Font,
-  Alignment,
 } from 'swiftui-react-native';
 import { ButtonSection } from './sections/ButtonSection';
 import { ColorSection } from './sections/ColorSection';
@@ -23,29 +21,26 @@ import { TextFieldSection } from './sections/TextFieldSection';
  */
 export default function App() {
   return (
-    // Wrap the app in a ColorSchemeProvider to enable light/dark mode by default
-    <ColorSchemeProvider preferredColorScheme="light">
+    // Wrap the app in a EnvironmentProvider to enable light/dark mode by default
+    <EnvironmentProvider>
       <Examples />
-    </ColorSchemeProvider>
+    </EnvironmentProvider>
   );
 }
 
 const Examples = () => {
   // Get the current color scheme
-  const { colorScheme } = useColorScheme();
-  // Get the current UIColor palette
+
+  const { colorScheme } = useEnvironment();
+  // Get the current UIColor palette for styling components outside of swiftui-react-native
   const UIColor = useUIColor();
   return (
     <View style={[styles.container, { backgroundColor: UIColor.systemGray6 }]}>
       <StatusBar
         barStyle={colorScheme === 'dark' ? 'light-content' : 'dark-content'}
       />
-      <ScrollView>
-        <Text
-          padding={20}
-          alignment={Alignment.leading}
-          font={Font.title}
-          fontWeight="bold">
+      <ScrollView contentContainerStyle={styles.contentContainerStyle}>
+        <Text padding={20} alignment="leading" font="title" bold>
           SwiftUI React Native
         </Text>
         <FontSection />
@@ -66,4 +61,5 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     justifyContent: 'flex-start',
   },
+  contentContainerStyle: { paddingBottom: 50 },
 });

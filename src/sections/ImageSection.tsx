@@ -1,14 +1,16 @@
 import React from 'react';
-import { HStack, Image, List, useUIColor } from 'swiftui-react-native';
+import { HStack, Image, List, SystemName, UIColor } from 'swiftui-react-native';
 
 export const ImageSection = () => {
-  const UIColor = useUIColor();
-  const sfSymbols = [
-    { name: 'trash', color: UIColor.systemOrange },
-    { name: 'plus', color: UIColor.systemBlue },
-    { name: 'phone', color: UIColor.systemPurple },
-    { name: 'arrow.right', color: UIColor.systemGreen },
-    { name: 'person.fill', color: UIColor.systemTeal },
+  const sfSymbols: {
+    name: SystemName;
+    color: UIColor;
+  }[] = [
+    { name: 'trash', color: 'systemOrange' },
+    { name: 'plus', color: 'systemBlue' },
+    { name: 'phone', color: 'systemPurple' },
+    { name: 'arrow.right', color: 'systemGreen' },
+    { name: 'person.fill', color: 'teal' },
   ];
 
   return (

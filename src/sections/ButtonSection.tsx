@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
-import { Button, Link, List, Text, useAlert } from 'swiftui-react-native';
+import React from 'react';
+import { Button, Link, List, Text, useBinding } from 'swiftui-react-native';
 
 export const ButtonSection = () => {
-  const [showAlert, setShowAlert] = useState(false);
-  useAlert(showAlert, {
-    title: 'SwiftUI is Cool',
-    message: 'So is React Native!',
-    buttons: [{ text: 'Cancel', onPress: () => setShowAlert(false) }],
-  });
+  const showAlert = useBinding(false);
   return (
     <List inset header="Buttons">
-      <Button action={() => setShowAlert(true)}>
+      <Button
+        action={showAlert.toggle}
+        alert={{
+          isPresented: showAlert,
+          title: 'SwiftUI is Cool',
+          message: 'So is React Native!',
+          actions: [{ title: 'Cancel' }],
+        }}>
         <Text alignment="leading">Button</Text>
       </Button>
       <Link destination="https://www.apple.com">
