@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   HStack,
   Image,
@@ -7,7 +7,7 @@ import {
   Text,
   VStack,
   ZStack,
-} from 'swiftui-react-native';
+} from "swiftui-react-native";
 
 export const StackSection = () => {
   return (

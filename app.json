@@ -17,7 +17,8 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.alevy97.suirn-test-expo"
+      "bundleIdentifier": "com.alevy97.suirn-test-expo",
+      "userInterfaceStyle": "automatic"
     },
     "android": {
       "adaptiveIcon": {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   VStack,
   HStack,
@@ -10,13 +10,13 @@ import {
   Toggle,
   useBinding,
   useEnvironment,
-} from 'swiftui-react-native';
+} from "swiftui-react-native";
 
 export const ControlSection = () => {
   const { colorScheme, setValues } = useEnvironment();
   const sliderValue = useBinding(0);
   const stepperValue = useBinding(0);
-  const toggleValue = useBinding(colorScheme === 'dark');
+  const toggleValue = useBinding(colorScheme === "dark");
 
   return (
     <List inset header="Controls">
@@ -25,17 +25,15 @@ export const ControlSection = () => {
           <Text font="body">Slider</Text>
           <Spacer />
           <Text font="body" foregroundColor="systemBlue">
-            {sliderValue.value}
+            {Math.round(sliderValue.value)}
           </Text>
         </HStack>
-        <VStack padding={10}>
-          <Slider
-            tint="systemBlue"
-            value={sliderValue}
-            step={2}
-            updateOnSlide
-          />
-        </VStack>
+        <Slider
+          value={sliderValue}
+          trackTint="accentColor"
+          thumbTint="blue"
+          range={[0, 20]}
+        />
       </VStack>
       <VStack>
         <HStack>
@@ -59,14 +57,14 @@ export const ControlSection = () => {
           <Text font="body">Toggle</Text>
           <Spacer />
           <Text foregroundColor="systemBlue" font="body">
-            {toggleValue.value ? 'On' : 'Off'}
+            {toggleValue.value ? "On" : "Off"}
           </Text>
         </HStack>
         <VStack padding={10}>
           <Toggle
             isOn={toggleValue}
             onChange={() =>
-              setValues({ colorScheme: toggleValue.value ? 'light' : 'dark' })
+              setValues({ colorScheme: toggleValue.value ? "light" : "dark" })
             }
           />
         </VStack>

@@ -1,5 +1,19 @@
-import React from "react";
-import { View, ScrollView, StatusBar, StyleSheet } from "react-native";
+/**
+ * This is a demo app that displays all of the components offered by the library.
+ * To present them nicely, each section is wrapped in a List view, but they are not
+ * required to be.
+ */
+
+import React, { useEffect, useRef, useState } from "react";
+import {
+  View,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  useColorScheme as ucs,
+  AppState,
+  Appearance,
+} from "react-native";
 import {
   EnvironmentProvider,
   Text,
@@ -13,27 +27,45 @@ import { FontSection } from "./src/sections/FontSection";
 import { ImageSection } from "./src/sections/ImageSection";
 import { StackSection } from "./src/sections/StackSection";
 import { TextFieldSection } from "./src/sections/TextFieldSection";
+import { ProgressSection } from "./src/sections/ProgressSection";
 
-/**
- * This is a demo app that displays all of the components offered by the library.
- * To present them nicely, each section is wrapped in a List view, but they are not
- * required to be.
- */
+// Wrap the app in a EnvironmentProvider to enable light/dark mode by default
 export default function App() {
+  const [colorScheme, setColorScheme] = useState<"light" | "dark">(
+    ucs() as any
+  );
+
+  const appState = useRef(AppState.currentState);
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener("change", (nextAppState) => {
+      if (
+        appState.current.match(/inactive|background/) &&
+        nextAppState === "active"
+      ) {
+        console.log(Appearance.getColorScheme());
+        setColorScheme(Appearance.getColorScheme() as any);
+      }
+
+      appState.current = nextAppState;
+      console.log("AppState", appState.current);
+    });
+
+    return () => {
+      subscription.remove();
+    };
+  }, []);
   return (
-    // Wrap the app in a EnvironmentProvider to enable light/dark mode by default
-    <EnvironmentProvider>
+    <EnvironmentProvider colorScheme={colorScheme}>
       <Examples />
     </EnvironmentProvider>
   );
 }
 
 const Examples = () => {
-  // Get the current color scheme
-
   const { colorScheme } = useEnvironment();
-  // Get the current UIColor palette for styling components outside of swiftui-react-native
   const UIColor = useUIColor();
+
   return (
     <View
       style={[
@@ -51,8 +83,9 @@ const Examples = () => {
         <FontSection />
         <ButtonSection />
         <ControlSection />
-        <ImageSection />
         <TextFieldSection />
+        <ProgressSection />
+        <ImageSection />
         <StackSection />
         <ColorSection />
       </ScrollView>

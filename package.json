@@ -13,11 +13,9 @@
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-native": "0.70.5",
-    "react-native-gesture-handler": "~2.8.0",
-    "react-native-reanimated": "~2.12.0",
     "react-native-sfsymbols": "^1.2.1",
     "react-native-web": "~0.18.9",
-    "swiftui-react-native": "file:../swiftui-react-native/dist",
+    "swiftui-react-native": "4.4.0",
     "expo-splash-screen": "~0.17.5"
   },
   "devDependencies": {
