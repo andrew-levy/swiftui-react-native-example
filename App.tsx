@@ -4,16 +4,8 @@
  * required to be.
  */
 
-import React, { useEffect, useRef, useState } from "react";
-import {
-  View,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  useColorScheme as ucs,
-  AppState,
-  Appearance,
-} from "react-native";
+import React from "react";
+import { View, ScrollView, StatusBar, StyleSheet } from "react-native";
 import {
   EnvironmentProvider,
   Text,
@@ -31,32 +23,8 @@ import { ProgressSection } from "./src/sections/ProgressSection";
 
 // Wrap the app in a EnvironmentProvider to enable light/dark mode by default
 export default function App() {
-  const [colorScheme, setColorScheme] = useState<"light" | "dark">(
-    ucs() as any
-  );
-
-  const appState = useRef(AppState.currentState);
-
-  useEffect(() => {
-    const subscription = AppState.addEventListener("change", (nextAppState) => {
-      if (
-        appState.current.match(/inactive|background/) &&
-        nextAppState === "active"
-      ) {
-        console.log(Appearance.getColorScheme());
-        setColorScheme(Appearance.getColorScheme() as any);
-      }
-
-      appState.current = nextAppState;
-      console.log("AppState", appState.current);
-    });
-
-    return () => {
-      subscription.remove();
-    };
-  }, []);
   return (
-    <EnvironmentProvider colorScheme={colorScheme}>
+    <EnvironmentProvider colorScheme="dark">
       <Examples />
     </EnvironmentProvider>
   );
